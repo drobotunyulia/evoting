@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Электронная система голосования{% endblock %}</title>
+    <style> .green-form { background-color: lightgreen; padding: 20px; margin: 0 auto; width: 50%; } .side-image { float: right; margin-right: 20px; } </style>
+</head>
+<body>
+<div class="header">
+    <h1>Электронная система голосования</h1>
+</div>
+<div class="content"> <img src="/static/main/1.png" alt="Бюллетень" class="side-image">
+    <div class="green-form"> {% block content %}
+    {% endblock %}
+    </div>
+</div>
+<div class="footer"> <a href="{% url 'index' %}">На главную</a>
+</div>
+</body>
+</html>

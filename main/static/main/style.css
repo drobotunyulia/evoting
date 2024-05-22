@@ -1,0 +1,18 @@
+header h1 {
+    font-size: 40pt;
+    text-transform: uppercase;
+    text-align: center;
+    background: url("1.png") left / auto 100% no-repeat;
+}
+nav {
+    font-size: 16pt;
+    width: 150px;
+    float: left;
+}
+nav a {
+    display block;
+    margin: 10px 0px;
+}
+section {
+    margin-left: 170px;
+}

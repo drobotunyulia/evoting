@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Результат</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #008000;
+        }
+
+        #myChart {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        button {
+            background-color: #008000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Результаты голосования "{{ vote.title }}"</h1>
+    <canvas id="myChart"></canvas>
+
+    <button onclick="window.location.href = '{% url 'index' %}'">На главную</button>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ combined_names|safe }},
+                datasets: [{
+                    label: 'Результат',
+                    data: {{ data|safe }},
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

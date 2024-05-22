@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронное голосование</title>
+    <style> body { font-family: Arial, sans-serif; background-image: url('https://img.freepik.com/premium-vector/a-white-and-green-background-with-a-white-background-and-a-green-and-black-design_564420-2930.jpg'); background-size: cover; background-repeat: no-repeat; text-align: center; font-family: Arial, sans-serif; } .button { background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 20px; cursor: pointer; } .button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+<h1>Добро пожаловать в электронную систему голосования</h1>
+{% if vote.title %}
+    <p>Голосование "{{ vote.title }}" уже началось</p>
+    <a href="{% url 'autorization' %}" class="button">Проголосовать</a>
+{% else %}
+    <p>Голосование пока не началось</p>
+{% endif %}
+</body>
+</html>

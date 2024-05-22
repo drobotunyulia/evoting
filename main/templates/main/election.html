@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Главная :: Кандидаты</title>
+    <style>
+        body {
+                  background-color: #e0f4f1;
+                  font-family: Arial, sans-serif;
+             }
+
+        h1 {
+                  text-align: center;
+                  color: #333;
+            }
+
+        .candidate {
+                  background-color: #fff;
+                  border-radius: 10px;
+                  padding: 10px;
+                  margin: 10px;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+             }
+
+        h2 {
+            color: #555;
+        }
+        p {
+            color: #777;
+            }
+    </style>
+</head>
+<body>
+<h1>Кандидаты</h1>
+<form action="{% url 'submit' %}" method="POST">
+    {% csrf_token %}
+    {% for candidate in candidates %}
+    <div class="candidate"> <input type="radio" id="{{ candidate.id }}" name="candidate" value="{{ candidate.id }}">
+        <label for="{{ candidate.id }}">
+            <h2>{{ forloop.counter }}. {{ candidate.surname }} {{ candidate.name }} {{ candidate.patronymic }}</h2>
+            <p>{{ candidate.occupation }}</p>
+        </label>
+    </div>
+    {% endfor %}
+    <button type="submit" style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 10px 20px; margin: 10px;">Проголосовать</button>
+</form>
+</body>
+</html>

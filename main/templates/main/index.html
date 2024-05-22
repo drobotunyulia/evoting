@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #e6ffe6;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="email"] {
+            border: 1px solid #99cc99;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            background-color: #66b366;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4d944d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Авторизация</h1>
+            <form action="{% url 'identification' %}" method='POST'>
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Email адрес" required>
+                <button type="submit">Войти</button>
+            </form>
+            <button onclick="window.location.href='{% url 'index' %}'">На главную</button>
+    </div>
+</body>
+</html>
