@@ -24,3 +24,5 @@
 ![aut](https://github.com/drobotunyulia/evoting/blob/master/aut.png)
 ### Электронный бюллетень
 ![vote](https://github.com/drobotunyulia/evoting/blob/master/vote.png)
+### Результаты
+![vote](https://github.com/drobotunyulia/evoting/blob/master/vote.png)
