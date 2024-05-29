@@ -21,6 +21,6 @@
 ### Главная страница
 ![main](https://github.com/drobotunyulia/evoting/blob/master/main.png)
 ### Страница авторизация
-![aut]()
+![aut](https://github.com/drobotunyulia/evoting/blob/master/aut.png)
 ### Электронный бюллетень
 ![vote]()
