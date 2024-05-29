@@ -249,29 +249,6 @@ _C: list = [bytearray([
 
 
 def new(name: str, **kwargs) -> 'GOST34112012':
-    """
-    Создает новый объект класса
-
-    Args:
-        name: строка с названием алгоритма ('streebog256'
-          для Гост 34.11-2012 и результат хэш длиной 32 байта или
-           'streebog512' с результирующем хэшем длиной в 64 ьайта.
-        **data: The data from which to get the hash (as a byte object).  If
-          this argument is passed to a function, you can immediately use the
-          'digest()' (or 'hexdigest()') method to calculate the hash value
-          after calling 'new()'.  If the argument is not passed to the
-          function, then you must use the 'update()' method before the
-          'digest()' (or 'hexdigest()') method.
-
-    Returns:
-        новый объект
-
-    Raises:
-        HashError('HashError: unsupported hash type'): In case of
-          неправильное значение name
-        HashError('HashError: invalid data value'): In case where the
-          данные не в формате byte
-    """
     if name not in ('streebog512', 'streebog256'):
         raise HashError('HashError: unsupported hash type')
     data = kwargs.get('data', bytearray(b''))
@@ -279,33 +256,7 @@ def new(name: str, **kwargs) -> 'GOST34112012':
 
 
 class GOST34112012:
-    """
-    Класс
-
-    Methods:
-        update():
-        copy(): копирование хеша
-        digest():
-        hexdigest(): Returns a digest of the hexadecimal data passed so far to
-          the 'update()' method.
-        reset(): Resets the values of all class attributes.
-
-    Attributes:
-        digest_size: An integer value the size of the resulting hash in bytes.
-        block_size: An integer value the internal block size of the hash
-          algorithm in bytes.
-        name: Text string value the name of the hashing algorithm.
-    """
-
     def __init__(self, name: str, data: bytearray) -> None:
-        """
-        Initialize the hashing object.
-
-        Args:
-            name: String with the name of the hashing algorithm ('streebog256'
-              or 'streebog512')
-            data: The data from which to get the hash (as a byte object).
-        """
         self._name = name
         self._buff = bytearray(b'')
         self._num_block = 0
@@ -386,19 +337,6 @@ class GOST34112012:
         return result
 
     def update(self, data: bytearray) -> None:
-        """
-        Update the hash object with the bytes-like object.
-
-        Args:
-            data: The string from which to get the hash. Repeated calls are
-              equivalent to a single call with the concatenation of all the
-              arguments: 'm.update(a)'; 'm.update(b)' is equivalent to
-              'm.update(a+b)'.
-
-        Raises:
-            HashError('HashError: invalid data value'): In case where
-              the data is not byte object.
-        """
         if not isinstance(data, (bytes, bytearray)):
             raise HashError('HashError: invalid data value')
         data = self._buff + data
@@ -413,7 +351,6 @@ class GOST34112012:
             self._buff = data[-(SIZE_BLOCK - self._pad_block_size):]
 
     def hash_final(self) -> None:
-        """Complete the hash calculation after the data update."""
         self._pad_block_size = SIZE_BLOCK - len(self._buff)
         internal = bytearray(SIZE_BLOCK)
         internal[1] = (((SIZE_BLOCK - self._pad_block_size) * 8) >> 8) & 0xff
@@ -429,30 +366,14 @@ class GOST34112012:
         self._hash_h = self._hash_g(self._hash_h, _V_0, self._hash_sigma)
 
     def get_hash(self) -> bytearray:
-        """Return the value of the _hasha_h attribute."""
         return self._hash_h[-self.digest_size:]
 
     def digest(self) -> bytearray:
-        """
-        Return the digest of the data.
-
-        This method can be called after applying the 'update ()' method, or
-        after calling the 'new()' function with the data passed to it for
-        hash calculation.
-        """
         temp = self.copy()
         temp.hash_final()
         return temp.get_hash()
 
     def hexdigest(self) -> str:
-        """
-        Return the digest of the data.
-
-        This method can be called after applying the 'update ()' method, or
-        after calling the 'new()' function with the data passed to it for
-        hash calculation.  The result is represented as a hexadecimal string
-        as a double-sized string object (digest_size * 2).
-        """
         return self.digest().hex()
 
     def reset(self) -> None:
@@ -460,22 +381,11 @@ class GOST34112012:
         self.__init__(self._name, bytearray(b''))
 
     def copy(self) -> 'GOST34112012':
-        """
-        Return a duplicate (“clone”) of the hash object.
 
-        This function can be used to efficiently compute the digests of data
-        sharing a common initial substring.
-        """
         return deepcopy(self)
 
     @property
     def digest_size(self):
-        """
-        Return the size of the resulting hash in bytes.
-
-        For the 'streebog256' algorithm, this value is 32, for the 'streebog512'
-        algorithm, this value is 64.
-        """
         if self._name == 'streebog512':
             result = 64
         else:
@@ -484,28 +394,11 @@ class GOST34112012:
 
     @property
     def block_size(self):
-        """
-        Return the value of the internal block size of the hashing algorithm.
-
-        For the 'streebog256' algorithm and the 'streebog512' algorithm, this
-        value is 64.
-        """
         return SIZE_BLOCK
 
     @property
     def name(self):
-        """
-        Return the string value the name of the hashing algorithm.
-
-        Respectively 'streebog256' or 'streebog512'.
-        """
         return self._name
 
 
 class HashError(Exception):
-    """
-    The exception class.
-
-    This is a class that implements exceptions that can occur when input data
-    is incorrect.
-    """
