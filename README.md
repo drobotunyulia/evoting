@@ -19,7 +19,7 @@
 
 ## Взаимодествие клиента с ситемой
 ### Главная страница
-![main]()
+![main](https://github.com/drobotunyulia/evoting/blob/master/main.png)
 ### Страница авторизация
 ![aut]()
 ### Электронный бюллетень
