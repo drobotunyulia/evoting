@@ -3,14 +3,14 @@ import datetime
 
 
 class Block:
-    index: int  # номер блока
-    time_stamp: str  # метка времени
-    transactions: []  # транзакция
-    proof: int  # доказательство выполнения работы
-    previous_hash: str  # хеш предыдущего блока
-    hash: str  # хеш текущего блока
+    index: int
+    time_stamp: str
+    transactions: []
+    proof: int
+    previous_hash: str
+    hash: str
 
-    def calc_hash(self) -> str:  # Метод подсчета хеша
+    def calc_hash(self) -> str:
         transactions_str = ""
         for string in self.transactions:
             transactions_str += string
