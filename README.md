@@ -27,16 +27,18 @@
 ### Результаты
 ![vote](https://github.com/drobotunyulia/evoting/blob/master/res.png)
 
+---
 
-Запуск компонентов проекта:
+Запуск компонентов проекта
+ПАПКА : КОМАНДА
 
-Валидатор: python3 validator.py
-
-...
-
-Узел блокчейна: python3 blockchain.py
+validator: python3 validator.py
 
 ...
 
-Запуск обработчика запросов: python3 manage.py runserver
+blockchain: python3 blockchain.py
+
+...
+
+election: python3 server.py
 
