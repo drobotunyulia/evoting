@@ -26,3 +26,12 @@
 ![vote](https://github.com/drobotunyulia/evoting/blob/master/vote.png)
 ### Результаты
 ![vote](https://github.com/drobotunyulia/evoting/blob/master/res.png)
+
+
+Запуск компонентов проекта:
+
+Валидатор: python3 validator.py
+...
+Узел блокчейна: python3 blockchain.py
+...
+Запуск обработчика запросов: python3 manage.py runserver
