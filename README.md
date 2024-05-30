@@ -42,8 +42,9 @@ blockchain: python3 blockchain.py
 
 ...
 
-(Перед запуском в файле .env изменить переменные окружения)
-
+election:
+Создать базу данных ./create.sql
+В файле .env изменить переменные окружения
 election: docker-compose up --build
 
 ...
