@@ -34,10 +34,6 @@
 ПАПКА: КОМАНДА
 
 
-evoting: docker-compose up --build
-
-...
-
 validator: python3 validator.py
 
 ...
@@ -46,5 +42,11 @@ blockchain: python3 blockchain.py
 
 ...
 
-election: python3 server.py
+(Перед запуском в файле .env изменить переменные окружения)
+
+election: docker-compose up --build
+
+...
+
+evoting: docker-compose up --build
 
