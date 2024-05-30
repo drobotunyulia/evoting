@@ -1,0 +1,10 @@
+FROM python:3.9
+
+RUN pip install psycopg2-binary
+
+COPY . /app
+WORKDIR /app
+
+ENV DATABASE_URL=postgres://user:password@postgres:5432/database
+
+CMD ["python", "server.py"]
