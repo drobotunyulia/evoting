@@ -31,7 +31,12 @@
 Запуск компонентов проекта:
 
 Валидатор: python3 validator.py
+
 ...
+
 Узел блокчейна: python3 blockchain.py
+
 ...
+
 Запуск обработчика запросов: python3 manage.py runserver
+
