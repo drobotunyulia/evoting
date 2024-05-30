@@ -30,9 +30,13 @@
 ---
 
 Запуск компонентов проекта
+
 ПАПКА: КОМАНДА
 
+
 evoting: docker-compose up --build
+
+...
 
 validator: python3 validator.py
 
