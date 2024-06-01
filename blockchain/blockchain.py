@@ -1,16 +1,19 @@
+import blockchain
+import socket
+
 import hash
 import datetime
 
 
 class Block:
     index: int 
-    time_stamp: str 
-    transactions: []
+    time_stamp: str  
+    transactions: [] 
     proof: int  
-    previous_hash: str
+    previous_hash: str 
     hash: str  
 
-    def calc_hash(self) -> str: 
+    def calc_hash(self) -> str:  
         transactions_str = ""
         for string in self.transactions:
             transactions_str += string
@@ -75,3 +78,31 @@ class Blockchain:
 
     def clear_mempool(self):
         self.mempool = []
+
+
+block_chain = Blockchain(2)
+genesis_block = Block()
+block_chain.add_genesis_block(genesis_block)
+block_index = 0
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('127.0.0.1', 5001))
+server_socket.listen()
+
+print("Узел блокчейна запущен и прослушивает порт 5000...")
+
+while True:
+    client_socket, address = server_socket.accept()
+    print(f"Подключение от {address}")
+    data = client_socket.recv(1024).decode()
+
+    if data:
+        block_chain.mempool.append(data)
+        client_socket.send(b"0")
+        if len(block_chain.mempool) == block_chain.max_size_mempool:
+            block = Block()
+            block_index = block_index + 1
+            block.init(block_index, block_chain.mempool)
+            block_chain.add_block(block)
+            block_chain.clear_mempool()
+    client_socket.close()
