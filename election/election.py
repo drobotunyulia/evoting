@@ -15,10 +15,8 @@ class Election:
         self.password = password
         self.host = host
         try:
-            # Connect to the database
             self.conn = psycopg2.connect(dbname=self.database, user=self.user, password=self.password, host=self.host)
 
-            # Creating cursor object
             self.cursor = self.conn.cursor()
 
             self.cursor.execute('TRUNCATE candidate, voter, vote, validator')
