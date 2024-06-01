@@ -1,6 +1,4 @@
-import blockchain
 import socket
-
 import hash
 import datetime
 
