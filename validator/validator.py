@@ -1,4 +1,3 @@
-import autorization
 import blind_sign
 import datetime
 check_dict = {}
