@@ -2,8 +2,8 @@ import blind_sign
 import datetime
 check_dict = {}
 
-data = autorization.autorization()
-response = autorization.tcp_connection_to_server(data).decode()
+data = blind_sign.autorization()
+response = blind_sign.tcp_connection_to_server(data).decode()
 if response == '0':
     print('\n')
     print('Вы авторизованы как валидатор.')
