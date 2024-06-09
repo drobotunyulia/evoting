@@ -34,27 +34,38 @@
 
 
 Запуск узла валидатора:
+
 cd validator
+
 python3 validator.py
 
 ...
 
 Запуск узла блокчейна:
+
 cd blockchain
+
 python3 blockchain.py
 
 ...
 
 
 Запуск сервера:
+
 cd election
+
 Создать базу данных ./create.sql
+
 В файле .env изменить переменные окружения
+
 docker-compose up --build
 
 ...
 
 Запуск обработчика запросов:
+
 cd evoting
+
 docker-compose up --build
+
 
