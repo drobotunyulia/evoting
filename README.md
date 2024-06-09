@@ -32,26 +32,29 @@
 
 Запуск компонентов проекта (запуск отдельных компонентов системы на разных хостах)
 
-ПАПКА: КОМАНДА
 
-
-validator: python3 validator.py
-
-...
-
-blockchain: python3 blockchain.py
+Запуск узла валидатора:
+cd validator
+python3 validator.py
 
 ...
 
-election:
+Запуск узла блокчейна:
+cd blockchain
+python3 blockchain.py
 
+...
+
+
+Запуск сервера:
+cd election
 Создать базу данных ./create.sql
-
 В файле .env изменить переменные окружения
-
-election: docker-compose up --build
+docker-compose up --build
 
 ...
 
-evoting: docker-compose up --build
+Запуск обработчика запросов:
+cd evoting
+docker-compose up --build
 
